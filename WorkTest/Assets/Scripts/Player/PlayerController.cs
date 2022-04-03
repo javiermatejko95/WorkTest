@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
-    private void FixedUpdate()
+    private void Update()
     {
         playerMovement.Move(Input.GetAxisRaw("Horizontal"));
     }
