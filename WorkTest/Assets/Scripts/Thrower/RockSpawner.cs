@@ -38,6 +38,7 @@ public class RockSpawner : MonoBehaviour
     #region PRIVATE_METHODS
     private void SpawnRock()
     {
+        //TODO rock pool
         GameObject go = Instantiate(rockPrefab, spawnPosition);
         go.transform.position = this.transform.position;
         RockMovement rock = go.GetComponent<RockMovement>();
