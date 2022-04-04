@@ -7,10 +7,9 @@ public class RockMovement : MonoBehaviour
     #region EXPOSED_FIELDS
     [SerializeField] private Vector3[] points = null;
     [SerializeField] private Transform floorPosition = null;
-    [SerializeField] private float time = 0f;
+    private float time = 0f;
     private float height = 2f;
     [SerializeField] private float range = 2f;
-    [SerializeField] private bool canContinue = false;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -18,11 +17,6 @@ public class RockMovement : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
-    void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.C))
@@ -37,8 +31,6 @@ public class RockMovement : MonoBehaviour
     #region PUBLIC_METHODS
     private IEnumerator NextPoint()
     {
-        canContinue = false;
-
         while(time < 1f)
         {
             time += Time.deltaTime;
