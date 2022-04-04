@@ -6,14 +6,14 @@ public class RockMovement : MonoBehaviour
 {
     #region EXPOSED_FIELDS
     [SerializeField] private Vector3[] points = null;
-    [SerializeField] private Transform floorPosition = null;
-    private float time = 0f;
-    private float height = 2f;
     [SerializeField] private float range = 2f;
     #endregion
 
     #region PRIVATE_FIELDS
-
+    private Transform floorPosition = null;
+    private float time = 0f;
+    private float height = 2f;
+    private bool bounced = false;
     #endregion
 
     #region UNITY_CALLS
@@ -26,12 +26,36 @@ public class RockMovement : MonoBehaviour
             StartCoroutine(NextPoint());
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Spring")
+        {
+            bounced = true;
+            StartMoving();
+        }
+    }
     #endregion
 
     #region PUBLIC_METHODS
+    public void Init(Transform floorPosition)
+    {
+        this.floorPosition = floorPosition;
+    }
+
+    public void StartMoving()
+    {
+        StopCoroutine(NextPoint());
+        CalculateRoute();
+        time = 0f;
+        StartCoroutine(NextPoint());
+    }
+    #endregion
+
+    #region PRIVATE_METHODS
     private IEnumerator NextPoint()
     {
-        while(time < 1f)
+        while (time < 1f)
         {
             time += Time.deltaTime;
 
@@ -44,13 +68,16 @@ public class RockMovement : MonoBehaviour
         }
 
         time = 0f;
+        Destroy(this.gameObject);
     }
-    #endregion
 
-    #region PRIVATE_METHODS
     private void CalculateRoute()
     {
-        height = range / 2;
+        if(!bounced)
+        {
+            height = range / 2;
+        }
+        
         points[0] = this.transform.position;
         points[1] = points[0] + Vector3.right + Vector3.up * height;
         points[2] = points[1] + Vector3.right * range;
