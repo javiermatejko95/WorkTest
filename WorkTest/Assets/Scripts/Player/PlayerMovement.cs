@@ -13,10 +13,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region UNITY_CALLS
-    private void Awake()
-    {
 
-    }
     #endregion
 
     #region PUBLIC_METHODS
