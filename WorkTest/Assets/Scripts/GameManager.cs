@@ -7,6 +7,7 @@ public class GameActions
 {
     public Action<int> OnRockReachedGoal = null;
     public Action<int> OnCoinPickedUp = null;
+    public Action<bool> OnGameEnd = null;
 }
 
 public class GameManager : MonoBehaviour
@@ -15,10 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIController uiController = null;
     [SerializeField] private ScoreManager scoreManager = null;
     [SerializeField] private CoinController coinController = null;
-    #endregion
-
-    #region PUBLIC_ACTIONS
-
+    [SerializeField] private TimerManager timerManager = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -28,8 +26,13 @@ public class GameManager : MonoBehaviour
     #region UNITY_CALLS
     private void Awake()
     {
+        gameActions.OnGameEnd += EndGame;
+
         scoreManager.Init(gameActions);
         coinController.Init(gameActions);
+        uiController.Init();
+        timerManager.Init(gameActions, uiController.OnTimerUpdate);
+        timerManager.SetTimer(true);
     }
     #endregion
 
@@ -38,6 +41,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region PRIVATE_METHODS
+    private void EndGame(bool state)
+    {
+        if(state)
+        {
 
+        }
+    }
     #endregion
 }
