@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     #endregion
 
     #region PUBLIC_ACTIONS
-
+    public Action<int> OnTimerUpdate = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -31,11 +31,9 @@ public class UIController : MonoBehaviour
     #region PUBLIC_METHODS
     public void Init()
     {
-
+        OnTimerUpdate += UpdateTimerText;
     }
-    #endregion
 
-    #region PRIVATE_METHODS
     public void UpdateRocksText(int amount)
     {
         rocksText.text = "x" + amount.ToString();
@@ -44,6 +42,13 @@ public class UIController : MonoBehaviour
     public void UpdateCoinsText(int amount)
     {
         coinsText.text = "x " + amount.ToString();
+    }
+    #endregion
+
+    #region PRIVATE_METHODS
+    private void UpdateTimerText(int time)
+    {
+        timerText.text = "TIME " + time.ToString();
     }
     #endregion
 }
