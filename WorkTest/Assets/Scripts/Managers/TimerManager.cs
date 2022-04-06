@@ -27,7 +27,6 @@ public class TimerManager : MonoBehaviour
             if(timer <= 0f)
             {
                 gameActions.OnGameEnd?.Invoke(true);
-                SetTimer(false);
             }
         }
     }
@@ -41,7 +40,7 @@ public class TimerManager : MonoBehaviour
         this.OnTimerUpdate?.Invoke((int)timer);
     }
 
-    public void SetTimer(bool state)
+    public void SetOn(bool state)
     {
         on = state;
     }

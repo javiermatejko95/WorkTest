@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ScoreManager scoreManager = null;
     [SerializeField] private CoinController coinController = null;
     [SerializeField] private TimerManager timerManager = null;
+    [SerializeField] private ThrowerController throwerController = null;
     #endregion
 
     #region PRIVATE_FIELDS
@@ -32,7 +33,9 @@ public class GameManager : MonoBehaviour
         coinController.Init(gameActions);
         uiController.Init();
         timerManager.Init(gameActions, uiController.OnTimerUpdate);
-        timerManager.SetTimer(true);
+        timerManager.SetOn(true);
+        throwerController.Init();
+        throwerController.SetRockSpawnerOn(true);
     }
     #endregion
 
@@ -45,7 +48,8 @@ public class GameManager : MonoBehaviour
     {
         if(state)
         {
-
+            timerManager.SetOn(false);
+            throwerController.SetRockSpawnerOn(false);
         }
     }
     #endregion

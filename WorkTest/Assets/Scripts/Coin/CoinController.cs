@@ -16,11 +16,16 @@ public class CoinController : MonoBehaviour
     #region PRIVATE_FIELDS
     private float currentTimer = 0f;
     private GameActions gameActions = null;
+    private bool on = false;
     #endregion
 
     #region UNITY_CALLS
     private void Update()
     {
+        if(!on)
+        {
+            return;
+        }
         if (currentTimer >= interval)
         {
             SpawnCoin();
