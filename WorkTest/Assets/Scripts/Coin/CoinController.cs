@@ -43,6 +43,11 @@ public class CoinController : MonoBehaviour
     {
         this.gameActions = gameActions;
     }
+
+    public void SetOn(bool state)
+    {
+        this.on = state;
+    }
     #endregion
 
     #region PRIVATE_METHODS

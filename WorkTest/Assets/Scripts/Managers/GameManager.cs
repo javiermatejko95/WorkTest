@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
         scoreManager.Init(gameActions);
         coinController.Init(gameActions);
+        coinController.SetOn(true);
         uiController.Init();
         timerManager.Init(gameActions, uiController.OnTimerUpdate);
         timerManager.SetOn(true);
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             timerManager.SetOn(false);
             throwerController.SetRockSpawnerOn(false);
+            coinController.SetOn(false);
         }
     }
     #endregion
